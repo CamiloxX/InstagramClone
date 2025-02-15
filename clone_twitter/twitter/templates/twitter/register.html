@@ -10,6 +10,21 @@
 
         <form method="post">
             {% csrf_token %}
+            
+            <!-- Mostrar errores del formulario -->
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <strong>Errores en el formulario:</strong>
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
             <div class="input-wrapper">
                 <label for="user-name-id">First Name</label>
                 {{ form.first_name }}
@@ -32,7 +47,7 @@
                 {{ form.password2 }}
             </div>
 
-            <button class="twitter-btn">Registrarse</button>
+            <button class="twitter-btn" type="submit">Registrarse</button>
         </form>
 
         <div class="footer">
@@ -40,5 +55,5 @@
         </div>
 
     </div>
-
+</body>
 {% endblock content %}

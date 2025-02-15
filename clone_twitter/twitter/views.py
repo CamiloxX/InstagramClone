@@ -11,7 +11,14 @@ def home(request):
     context = {'posts': posts}
     return render(request, 'twitter/newsfeed.html', context)  
 def register_view(request):
-    context = {}
+    if request.method == 'POST': 
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = UserForm()
+    context = {'form' : form}
     return render(request, 'twitter/register.html', context)
 
 def logout_view(request):
