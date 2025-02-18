@@ -6,6 +6,9 @@ from django.urls import reverse
 from .models import Profile, Post
 from .forms import UserForm
 
+def custom_logout(request):
+    logout(request)  # Cierra la sesión del usuario
+    return redirect('login')  # Redirige a la página de login
 def home(request):
     posts = Post.objects.all()
     context = {'posts': posts}
