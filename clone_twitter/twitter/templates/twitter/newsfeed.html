@@ -76,9 +76,9 @@
                         <img src="{{ post.user.profile.image.url }}"
                             alt="" class="avator">
                         <div class="tweet-header-info">
+                            <a href="{% url 'profile' post.user %}">
                             {{ post.user.first_name }} 
                             </a>
-                            
                             <span>@{{ post.user }}</span><span>{{ post.timestamp|naturaltime }}
                             </span>
                             <p>{{ post.content }}</p>
